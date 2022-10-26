@@ -1,5 +1,10 @@
+import React from "react";
+import Config from "./components/Config";
 export default function Game() {
-    return(
-        <h1>hola mundo</h1>
+    return (
+        <>
+            <Config />
+        </>
     )
+
 };

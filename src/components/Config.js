@@ -1,8 +1,8 @@
 import { useState,useEffect} from "react";
 import Preload from "./Preload";
-import Game from "./Game";
+import LevelOne from "./LevelOne";
 import Phaser from "phaser";
-export default function Escena1() {
+export default function Config() {
     //uso state de una varibale 'listo', sino usamos esto los lienzos se acumularan en la visa 
     const [listo, setListo] = useState(false);
     //usamos el hook para que renderice acciones que reat no hace
@@ -11,11 +11,11 @@ export default function Escena1() {
         const CONFIGURACION = {
             scale: {
                 autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
-                width: 800,
-                height: 600
+                width: 640,
+                height: 682
             },
         }
-        const Escenas = [Preload, Game]
+        const Escenas = [Preload, LevelOne]
         const crearEscena = Scene => new Scene(CONFIGURACION)
         const iniciarEscena = () => Escenas.map(crearEscena)
 
