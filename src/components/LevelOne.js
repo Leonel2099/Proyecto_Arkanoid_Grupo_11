@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 export default class Game extends Phaser.Scene {
     constructor(config) {
-        super('Game')
+        super('LevelOne')
         this.config = config
         this.player = null;
         this.cursors = null;
@@ -69,18 +69,18 @@ export default class Game extends Phaser.Scene {
 
     }
     createBackground() {
-        this.add.image(400, 300, 'space');
+        this.add.image(320, -20, 'fondo').setScale(2.9);
     }
     createPlayer() {
         //se añade fisica al player
-        this.player = this.physics.add.image(400, 550, 'player').setImmovable().setScale(0.5);
+        this.player = this.physics.add.image(400, 600, 'player').setImmovable().setScale(0.3);
         //se quita la gravedad al player
         this.player.body.allowGravity = false;
         //evita que el player atraviese el borde izquierdo y derecho
         this.player.setCollideWorldBounds(true);
     }
     createBall() {
-        this.pelota = this.physics.add.image(400, 520, 'pelota');
+        this.pelota = this.physics.add.image(400, 580, 'pelota').setScale(0.4);
         //se agrega el rebote de la pelota con los bordes
         this.pelota.setCollideWorldBounds(true);
         this.pelota.setBounce(1);
@@ -90,11 +90,12 @@ export default class Game extends Phaser.Scene {
     }
     createBlocks() {
         this.barras = this.physics.add.staticGroup();
-        let barraDistanciaHorizontal = 40;
-        for (let i = 0; i < 10; i++) {
+        let barraDistanciaHorizontal = 80;
+        for (let i = 0; i < 7; i++) {
             this.barras.create(barraDistanciaHorizontal, 100, 'barra');
             this.barras.create(barraDistanciaHorizontal, 135, 'barra');
             this.barras.create(barraDistanciaHorizontal, 170, 'barra');
+    
             barraDistanciaHorizontal += 80;
         }
         //se agrega la colision entre la pelota y las barras
