@@ -1,7 +1,7 @@
 import Phaser from "phaser";
-export default class LevelOne extends Phaser.Scene {
+export default class LevelTwo extends Phaser.Scene {
     constructor(config) {
-        super('LevelOne')
+        super('LevelTwo')
         this.config = config
         this.player = null;
         this.cursors = null;
@@ -33,6 +33,7 @@ export default class LevelOne extends Phaser.Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
         //this.physics.add.collider(this.pelota, this.player, this.bar, null, this);
         this.scoreText = this.add.text(20, 30, 'Score: 0', { fontSize: '32px', fill: '#fff' });
+
     }
     update() {
         //movimiento del player segun se presione la tecla izquierda o derecha
@@ -64,9 +65,9 @@ export default class LevelOne extends Phaser.Scene {
         //alerta de salida del canvas
         if (this.pelota.y > 615) {
             this.pelota.disableBody(true, true); // la pelota al pasar el limite superior del canvas se elimina
+            this.scene.start('GameOver')
             this.physics.pause();
             this.player.setTint(0xff0000);
-            this.scene.start('GameOver')
         }
         if (this.pelota.y <= 45) {
             this.pelota.setVelocityY(this.velocidadInicialY * (-1))
@@ -79,10 +80,10 @@ export default class LevelOne extends Phaser.Scene {
 
     }
     createBackground() {
-        this.add.image(320, -20, 'fondo').setScale(2.9);
+        this.add.image(-354, -20, 'fondo').setScale(2.9);
     }
     createPlayer() {
-        //se añade fisica al player
+        //se aÃ±ade fisica al player
         this.player = this.physics.add.image(300, 600, 'player').setImmovable().setScale(0.3);
         //se quita la gravedad al player
         this.player.body.allowGravity = false;
@@ -97,12 +98,10 @@ export default class LevelOne extends Phaser.Scene {
         this.pelota.setData('startingPoint', true);
         //se agrega la colision entre la pelota y el player
         this.physics.add.collider(this.pelota, this.player, this.collisionPlayer, null, this);
-        
     }
     collisionPlayer(pelota, player) {
-         //Incrementa la velocidad de la pelota despues de la colision
+        //Incrementa la velocidad de la pelota despues de la colision
         this.pelota.setVelocityY(this.velocidadInicialY - 5);
-
         let newXVelocity = Math.abs(this.velocidadInicialX) + 5;
         // Setea la velocidad en X de la pelota con respecto al ejeX del player 
         if (this.pelota.x < this.player.x) {
@@ -116,15 +115,15 @@ export default class LevelOne extends Phaser.Scene {
         let barraDistanciaHorizontal = 80;
         for (let i = 0; i < 9; i++) {
             //this.barras.create(barraDistanciaHorizontal, 100, 'barra');
-            this.barras.create(barraDistanciaHorizontal, 135, 'barra');
-            //this.barras.create(barraDistanciaHorizontal, 170, 'barra');
+            this.barras.create(barraDistanciaHorizontal, 135, 'barra1');
+            this.barras.create(barraDistanciaHorizontal, 170, 'barra');
             barraDistanciaHorizontal += 60;
         }
         //se agrega la colision entre la pelota y las barras
         this.physics.add.collider(this.pelota, this.barras, this.collectBarra, null, this);
     }
     createParticles(){
-        this.particles = this.add.particles('blue');
+        this.particles = this.add.particles('red');
         this.emitter = this.particles.createEmitter({
             speed: 10,
             scale: { start: 0.2, end: 0 },
@@ -147,9 +146,9 @@ export default class LevelOne extends Phaser.Scene {
         // }
         this.score += 10;
         this.scoreText.setText('Score: ' + this.score);
-        if (this.score === 90) {
+        if (this.score === 180) {
             this.physics.pause();
-            this.scene.start('LevelTwo')
+            this.scene.start('YouWon')
         }
     }
 };
