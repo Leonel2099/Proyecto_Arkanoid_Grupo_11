@@ -3,9 +3,10 @@ export class ButtonLvl2 {
         this.sceneR = scene
     }
     crear() {
-        this.button = this.sceneR.add.image(450, 500, 'level2').setInteractive()
+        this.button = this.sceneR.add.image(450, 450, 'level2').setInteractive()
         this.button.on('pointerdown', () => {
             this.sceneR.scene.start('LevelTwo')
+
         })
 
     }
