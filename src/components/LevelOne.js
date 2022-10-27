@@ -13,12 +13,12 @@ export default class LevelOne extends Phaser.Scene {
         this.velocidadInicialY = -300;
         this.velocidadInicialX = -72;
         this.barrasEliminadas = 0;
-        this.particles=null
-        this.emitter=null
+        this.particles = null
+        this.emitter = null
     }
     create() {
         //colision entre paredes del canva 
-        this.physics.world.setBoundsCollision(true, true, true, false);
+        this.physics.world.setBoundsCollision(true, true, true, true);
         //Creacion del Background
         this.createBackground();
         //Creacion del player
@@ -63,6 +63,8 @@ export default class LevelOne extends Phaser.Scene {
 
         //alerta de salida del canvas
         if (this.pelota.y > 615) {
+            this.score = 0;
+            this.scoreText.setText('Score: ' + this.score);
             this.pelota.disableBody(true, true); // la pelota al pasar el limite superior del canvas se elimina
             this.physics.pause();
             this.player.setTint(0xff0000);
@@ -97,10 +99,10 @@ export default class LevelOne extends Phaser.Scene {
         this.pelota.setData('startingPoint', true);
         //se agrega la colision entre la pelota y el player
         this.physics.add.collider(this.pelota, this.player, this.collisionPlayer, null, this);
-        
+
     }
     collisionPlayer(pelota, player) {
-         //Incrementa la velocidad de la pelota despues de la colision
+        //Incrementa la velocidad de la pelota despues de la colision
         this.pelota.setVelocityY(this.velocidadInicialY - 5);
 
         let newXVelocity = Math.abs(this.velocidadInicialX) + 5;
@@ -123,12 +125,12 @@ export default class LevelOne extends Phaser.Scene {
         //se agrega la colision entre la pelota y las barras
         this.physics.add.collider(this.pelota, this.barras, this.collectBarra, null, this);
     }
-    createParticles(){
+    createParticles() {
         this.particles = this.add.particles('blue');
         this.emitter = this.particles.createEmitter({
             speed: 10,
             scale: { start: 0.2, end: 0 },
-            frequency:10,
+            frequency: 10,
             blendMode: 'ADD'
         });
     }
@@ -147,9 +149,10 @@ export default class LevelOne extends Phaser.Scene {
         // }
         this.score += 10;
         this.scoreText.setText('Score: ' + this.score);
-        if (this.score === 90) {
+        if (this.score === 10) {
             this.physics.pause();
-            this.scene.start('LevelTwo')
+            // this.scene.start('LevelTwo')
+            this.scene.start('YouWon')
         }
     }
 };

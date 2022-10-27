@@ -18,7 +18,7 @@ export default class LevelTwo extends Phaser.Scene {
     }
     create() {
         //colision entre paredes del canva 
-        this.physics.world.setBoundsCollision(true, true, true, false);
+        this.physics.world.setBoundsCollision(true, true, true, true);
         //Creacion del Background
         this.createBackground();
         //Creacion del player
@@ -64,6 +64,8 @@ export default class LevelTwo extends Phaser.Scene {
 
         //alerta de salida del canvas
         if (this.pelota.y > 615) {
+            this.score = 0;
+            this.scoreText.setText('Score: ' + this.score);
             this.pelota.disableBody(true, true); // la pelota al pasar el limite superior del canvas se elimina
             this.scene.start('GameOver')
             this.physics.pause();

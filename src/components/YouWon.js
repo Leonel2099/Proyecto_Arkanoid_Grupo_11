@@ -13,6 +13,6 @@ export default class YouWon extends Phaser.Scene {
         this.button.crear()
     }
     createBackground() {
-        this.add.image(300,300, 'win');
+        this.add.image(320,341, 'win');
     }
 };
