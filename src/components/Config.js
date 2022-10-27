@@ -2,6 +2,10 @@ import { useState,useEffect} from "react";
 import Preload from "./Preload";
 import LevelOne from "./LevelOne";
 import Phaser from "phaser";
+import LevelTwo from "./LevelTwo";
+import Menu from "./Menu"
+import GameOver from "./GameOver";
+import YouWon from "./YouWon";
 export default function Config() {
     //uso state de una varibale 'listo', sino usamos esto los lienzos se acumularan en la visa 
     const [listo, setListo] = useState(false);
@@ -15,7 +19,7 @@ export default function Config() {
                 height: 682
             },
         }
-        const Escenas = [Preload, LevelOne]
+        const Escenas = [Preload,Menu,LevelOne,LevelTwo,GameOver,YouWon]
         const crearEscena = Scene => new Scene(CONFIGURACION)
         const iniciarEscena = () => Escenas.map(crearEscena)
 

@@ -10,8 +10,8 @@ export default class Preload extends Phaser.Scene {
         this.load.image('red', 'assets/img/red.png');
         this.load.image('gameOver', 'assets/img/gameover.jpg')
         this.load.image('fondoM', 'assets/img/inicio.jpg')
-        this.load.image('button', 'assets/img/restart.png')
-        this.load.image('play', 'assets/img/play.png');
+        this.load.image('restart', 'assets/img/restart.png')
+        this.load.spritesheet('play', 'assets/img/play.png',{frameWidth:184.5,frameHeight:114});
         this.load.image('fondo', 'assets/img/fondos.png');
         this.load.image('player', 'assets/img/vaus.png');
         this.load.image('pelota', 'assets/img/ball.png');

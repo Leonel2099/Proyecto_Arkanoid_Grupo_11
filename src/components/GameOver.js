@@ -14,7 +14,7 @@ export default class GameOver extends Phaser.Scene {
         this.createSound()
     }
     createBackground() {
-        this.add.image(300,600, 'gameOver');
+        this.add.image(320,341, 'gameOver');
     }
     createSound(){
         this.sonido2=this.sound.add('lose')
