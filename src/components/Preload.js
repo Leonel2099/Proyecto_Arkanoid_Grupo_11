@@ -22,6 +22,7 @@ export default class Preload extends Phaser.Scene {
         this.load.image('win', 'assets/img/youwon.jpg');
         this.load.image('level1', 'assets/img/level1.png');
         this.load.image('level2', 'assets/img/level2.png');
+        this.load.image('level3', 'assets/img/level3.png');
         //Carga de Sonidos
         this.load.audio('lose', 'assets/sounds/arkanoid_lose.mp3');
         this.load.audio('opening', 'assets/sounds/arkanoid_opening.mp3');

@@ -3,6 +3,7 @@ import Preload from "./Preload";
 import LevelOne from "./LevelOne";
 import Phaser from "phaser";
 import LevelTwo from "./LevelTwo";
+import LevelThree from "./LevelThree";
 import Menu from "./Menu"
 import GameOver from "./GameOver";
 import YouWon from "./YouWon";
@@ -19,7 +20,7 @@ export default function Config() {
                 height: 682
             },
         }
-        const Escenas = [Preload,Menu,LevelOne,LevelTwo,GameOver,YouWon]
+        const Escenas = [Preload,Menu,LevelOne,LevelTwo,LevelThree,GameOver,YouWon]
         const crearEscena = Scene => new Scene(CONFIGURACION)
         const iniciarEscena = () => Escenas.map(crearEscena)
 

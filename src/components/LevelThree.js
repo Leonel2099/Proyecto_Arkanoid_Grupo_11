@@ -1,7 +1,7 @@
 import Phaser from "phaser";
-export default class LevelTwo extends Phaser.Scene {
+export default class LevelThree extends Phaser.Scene {
     constructor(config) {
-        super('LevelTwo')
+        super('LevelThree')
         this.config = config
         this.player = null;
         this.cursors = null;
@@ -82,7 +82,7 @@ export default class LevelTwo extends Phaser.Scene {
 
     }
     createBackground() {
-        this.add.image(-354, -20, 'fondo').setScale(2.9);
+        this.add.image(990, -30, 'fondo').setScale(2.9);
     }
     createPlayer() {
         //se aÃ±ade fisica al player
@@ -114,11 +114,44 @@ export default class LevelTwo extends Phaser.Scene {
     }
     createBlocks() {
         this.barras = this.physics.add.staticGroup();
-        let barraDistanciaHorizontal = 80;
-        for (let i = 0; i < 9; i++) {
-            //this.barras.create(barraDistanciaHorizontal, 100, 'barra');
-            this.barras.create(barraDistanciaHorizontal, 135, 'barra1');
+        let barraDistanciaHorizontal = 45;
+        for (let i = 0; i < 2; i++) {
+            this.barras.create(barraDistanciaHorizontal, 100, 'barra');
+            this.barras.create(barraDistanciaHorizontal, 135, 'barra');
             this.barras.create(barraDistanciaHorizontal, 170, 'barra');
+            this.barras.create(barraDistanciaHorizontal, 205, 'barra');
+            barraDistanciaHorizontal += 60;
+        }
+
+        for (let i = 0; i < 2; i++) {
+            this.barras.create(barraDistanciaHorizontal, 100, 'barra1');
+            this.barras.create(barraDistanciaHorizontal, 135, 'barra1');
+            this.barras.create(barraDistanciaHorizontal, 170, 'barra1');
+            this.barras.create(barraDistanciaHorizontal, 205, 'barra1');
+            barraDistanciaHorizontal += 60;
+        }
+
+        for (let i = 0; i < 2; i++) {
+            this.barras.create(barraDistanciaHorizontal, 100, 'barra2');
+            this.barras.create(barraDistanciaHorizontal, 135, 'barra2');
+            this.barras.create(barraDistanciaHorizontal, 170, 'barra2');
+            this.barras.create(barraDistanciaHorizontal, 205, 'barra2');
+            barraDistanciaHorizontal += 60;
+        }
+
+        for (let i = 0; i < 2; i++) {
+            this.barras.create(barraDistanciaHorizontal, 100, 'barra1');
+            this.barras.create(barraDistanciaHorizontal, 135, 'barra1');
+            this.barras.create(barraDistanciaHorizontal, 170, 'barra1');
+            this.barras.create(barraDistanciaHorizontal, 205, 'barra1');
+            barraDistanciaHorizontal += 60;
+        }
+
+        for (let i = 0; i < 2; i++) {
+            this.barras.create(barraDistanciaHorizontal, 100, 'barra');
+            this.barras.create(barraDistanciaHorizontal, 135, 'barra');
+            this.barras.create(barraDistanciaHorizontal, 170, 'barra');
+            this.barras.create(barraDistanciaHorizontal, 205, 'barra');
             barraDistanciaHorizontal += 60;
         }
         //se agrega la colision entre la pelota y las barras
@@ -148,9 +181,8 @@ export default class LevelTwo extends Phaser.Scene {
         // }
         this.score += 10;
         this.scoreText.setText('Score: ' + this.score);
-        if (this.score === 180) {
-            this.physics.pause();
-            this.scene.start('LevelThree')
+        if (this.score === 420) {
+            this.physics.pause('LevelThree');
             this.scene.start('YouWon')
         }
     }

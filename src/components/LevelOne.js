@@ -149,9 +149,9 @@ export default class LevelOne extends Phaser.Scene {
         // }
         this.score += 10;
         this.scoreText.setText('Score: ' + this.score);
-        if (this.score === 10) {
+        if (this.score === 90) {
             this.physics.pause();
-            // this.scene.start('LevelTwo')
+            this.scene.start('LevelTwo')
             this.scene.start('YouWon')
         }
     }

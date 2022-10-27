@@ -3,7 +3,7 @@ export class PlayButton {
         this.sceneR = scene
     }
     crear() {
-        this.button = this.sceneR.add.image(320, 350, 'play').setInteractive()
+        this.button = this.sceneR.add.image(320, 330, 'play').setInteractive()
 
         this.button.on('pointerover', () => {
             this.button.setFrame(1);

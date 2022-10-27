@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import {PlayButton} from './PlayButton'
 import { ButtonLvl1 } from "./ButtonLvl1";
 import { ButtonLvl2 } from "./ButtonLvl2";
+import { ButtonLvl3 } from "./ButtonLvl3";
 export default class Menu extends Phaser.Scene {
     constructor(config) {
         super('Menu')
@@ -9,6 +10,7 @@ export default class Menu extends Phaser.Scene {
         this.button= new PlayButton(this)
         this.lvl1=new ButtonLvl1(this)
         this.lvl2=new ButtonLvl2(this)
+        this.lvl3=new ButtonLvl3(this)
         this.sonido;
     }
     create() {
@@ -17,6 +19,7 @@ export default class Menu extends Phaser.Scene {
         this.button.crear()
         this.lvl1.crear()
         this.lvl2.crear()
+        this.lvl3.crear()
         // this.createSound()
 
     }
