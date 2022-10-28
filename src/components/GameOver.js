@@ -19,7 +19,6 @@ export default class GameOver extends Phaser.Scene {
     createSound(){
         this.sonido2=this.sound.add('lose')
         this.sonido2.play({
-            loop:true,
             volume:0.3
         });
     }

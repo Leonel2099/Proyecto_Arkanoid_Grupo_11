@@ -28,7 +28,7 @@ export default class Preload extends Phaser.Scene {
         this.load.audio('opening', 'assets/sounds/arkanoid_opening.mp3');
         this.load.audio('reboteP', 'assets/sounds/arkanoid_rebote1.mp3');
         this.load.audio('reboteB', 'assets/sounds/arkanoid_rebote2.mp3');
-        this.load.audio('start', 'assets/sounds/arkanoid_start.mp3');
+        this.load.audio('winS', 'assets/sounds/arkanoid_start.mp3');
     }
 
     create() {
