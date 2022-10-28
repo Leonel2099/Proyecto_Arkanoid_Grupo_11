@@ -7,6 +7,12 @@ export class ResetButton {
         this.button.on('pointerdown',()=>{
             this.sceneR.scene.start('LevelOne')
         })
+        this.button.on('pointerover', () => {
+            this.button.setFrame(1);
+        })
 
+        this.button.on('pointerout', () => {
+            this.button.setFrame(0);
+        })
     }
 };
