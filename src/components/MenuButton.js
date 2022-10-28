@@ -7,6 +7,13 @@ export class MenuButton {
         this.button.on('pointerdown',()=>{
             this.sceneR.scene.start('Menu')
         })
+        this.button.on('pointerover', () => {
+            this.button.setFrame(1);
+        })
+
+        this.button.on('pointerout', () => {
+            this.button.setFrame(0);
+        })
     } 
     
 };

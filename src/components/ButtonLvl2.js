@@ -8,7 +8,13 @@ export class ButtonLvl2 {
             this.sceneR.scene.start('LevelTwo')
 
         })
+        this.button.on('pointerover', () => {
+            this.button.setFrame(1);
+        })
 
+        this.button.on('pointerout', () => {
+            this.button.setFrame(0);
+        })
     }
 
 };
