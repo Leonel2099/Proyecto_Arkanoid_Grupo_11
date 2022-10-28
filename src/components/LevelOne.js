@@ -9,7 +9,8 @@ export default class LevelOne extends Phaser.Scene {
         this.barras = null;
         this.score = 0;
         this.scoreText = null;
-        //this.sonido = null;
+        this.sonidoRebotePlayer = null;
+        this.sonidoReboteBlock = null;
         this.velocidadInicialY = -300;
         this.velocidadInicialX = -72;
         this.barrasEliminadas = 0;
@@ -18,7 +19,7 @@ export default class LevelOne extends Phaser.Scene {
     }
     create() {
         //colision entre paredes del canva 
-        this.physics.world.setBoundsCollision(true, true, true, true);
+        this.physics.world.setBoundsCollision(true, true, true, false);
         //Creacion del Background
         this.createBackground();
         //Creacion del player
@@ -27,8 +28,6 @@ export default class LevelOne extends Phaser.Scene {
         this.createBall();
         //Creacion de Bloque
         this.createBlocks();
-        //Creacion de particulas
-        this.createParticles();
         //se crea el objeto cursors para determinar si una tecla es pulsada o no
         this.cursors = this.input.keyboard.createCursorKeys();
         //this.physics.add.collider(this.pelota, this.player, this.bar, null, this);
@@ -58,7 +57,8 @@ export default class LevelOne extends Phaser.Scene {
         if (this.cursors.space.isDown && this.pelota.getData('startingPoint')) {
             this.pelota.setVelocity(this.velocidadInicialX, this.velocidadInicialY)
             this.pelota.setData('startingPoint', false)
-            this.emitter.startFollow(this.pelota);
+            //Creacion de particulas
+            this.createParticles();
         }
 
         //alerta de salida del canvas
@@ -81,7 +81,7 @@ export default class LevelOne extends Phaser.Scene {
 
     }
     createBackground() {
-        this.add.image(320, -20, 'fondo').setScale(2.9);
+        this.add.image(320, -30, 'fondo').setScale(2.9);
     }
     createPlayer() {
         //se añade fisica al player
@@ -102,6 +102,7 @@ export default class LevelOne extends Phaser.Scene {
 
     }
     collisionPlayer(pelota, player) {
+        this.createSoundP()
         //Incrementa la velocidad de la pelota despues de la colision
         this.pelota.setVelocityY(this.velocidadInicialY - 5);
 
@@ -133,10 +134,23 @@ export default class LevelOne extends Phaser.Scene {
             frequency: 10,
             blendMode: 'ADD'
         });
+        this.emitter.startFollow(this.pelota);
     }
-
+    createSoundB(){
+        this.sonidoReboteBlock=this.sound.add('reboteB')
+        this.sonidoReboteBlock.play({
+            volume:0.3
+        });
+    }
+    createSoundP(){
+        this.sonidoRebotePlayer=this.sound.add('reboteP')
+        this.sonidoRebotePlayer.play({
+            volume:0.3
+        });
+    }
     //velocidadInicial = 50;
     collectBarra(pelota, barras) {
+        this.createSoundB()
         barras.disableBody(true, true);
         // if (this.pelota.body.velocity.x == this.velocidadInicialX) {
         //     let randNum = Math.random();
@@ -152,7 +166,6 @@ export default class LevelOne extends Phaser.Scene {
         if (this.score === 90) {
             this.physics.pause();
             this.scene.start('LevelTwo')
-            this.scene.start('YouWon')
         }
     }
 };
